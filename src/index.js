@@ -21,6 +21,27 @@ const App = () => {
     <Router>
       <div id="App">
         <Navigation />
+        <Switch>
+        <Route path="/Home">
+            <Home/>
+          </Route>
+          <Route path="/Login">
+            <Login/>
+          </Route>
+          <Route path="/Register">
+            <Register/>
+          </Route>
+          <Route path="/Activities">
+            <Activities/>
+          </Route>
+          <Route path="/MyRoutines">
+            <MyRoutines/>
+          </Route>
+          <Route path="/Routines">
+            <Routines/>
+          </Route>
+
+        </Switch>
       </div>
     </Router>
   );
