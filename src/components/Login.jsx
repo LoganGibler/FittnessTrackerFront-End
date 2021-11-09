@@ -54,7 +54,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) =>{
               Login
             </Button>
             <Button variant="secondary" type="submit" onClick={(e)=>{
-              history.push("/register")
+              history.push("/Register")
             }}>
               Don't have an account?
             </Button>
@@ -73,9 +73,6 @@ const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) =>{
 
 
 export default Login;
-
-
-
 
 
 

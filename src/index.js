@@ -27,18 +27,36 @@ const App = () => {
     <Router>
       <div id="App">
         <Navigation />
-        <Login
-          setIsLoggedIn={setIsLoggedIn}
-          isLoggedIn={isLoggedIn}
-          setUsername={setUsername}
-          username={username}
-        />
-        <Register
-          setIsLoggedIn={setIsLoggedIn}
-          isLoggedIn={isLoggedIn}
-          setUsername={setUsername}
-          username={username}
-        />
+        <Switch>
+          {/* <Route path="/Home">
+            <Home/>
+          </Route> */}
+          <Route path="/Login">
+            <Login
+              setIsLoggedIn={setIsLoggedIn}
+              isLoggedIn={isLoggedIn}
+              setUsername={setUsername}
+              username={username}
+            />
+          </Route>
+          <Route path="/Register">
+            <Register
+              setIsLoggedIn={setIsLoggedIn}
+              isLoggedIn={isLoggedIn}
+              setUsername={setUsername}
+              username={username}
+            />
+          </Route>
+          {/* <Route path="/Activities">
+            <Activities/>
+          </Route>
+          <Route path="/MyRoutines">
+            <MyRoutines/>
+          </Route>
+          <Route path="/Routines">
+            <Routines/>
+          </Route> */}
+        </Switch>
       </div>
     </Router>
   );
