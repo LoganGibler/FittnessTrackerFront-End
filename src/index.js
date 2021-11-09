@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { getToken } from "./auth";
 
 import {
   BrowserRouter as Router,
