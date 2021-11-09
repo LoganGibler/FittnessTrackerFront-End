@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE = 'https://jsonplace-univclone.herokuapp.com'
+const BASE = 'https://fitnesstrac-kr.herokuapp.com'
 
 // this is an example for an api call with axios 
 

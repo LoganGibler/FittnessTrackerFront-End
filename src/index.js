@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
+  useHistory,
+  Link,
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from "react-router-dom";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Header } from "./components";
+import { Navigation } from "./components";
 
 const App = () => {
   return (
     <Router>
       <div id="App">
-        <Header />
+        <Navigation />
       </div>
     </Router>
   );
