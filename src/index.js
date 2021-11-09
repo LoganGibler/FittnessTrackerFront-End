@@ -14,13 +14,31 @@ import {
 } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation } from "./components";
+import { Navigation, Login, Register } from "./components";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  // const [allPosts, setAllPosts] = useState([]);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [filteredPosts, setFilteredPosts] = useState([]);
+
   return (
     <Router>
       <div id="App">
         <Navigation />
+        <Login
+          setIsLoggedIn={setIsLoggedIn}
+          isLoggedIn={isLoggedIn}
+          setUsername={setUsername}
+          username={username}
+        />
+        <Register
+          setIsLoggedIn={setIsLoggedIn}
+          isLoggedIn={isLoggedIn}
+          setUsername={setUsername}
+          username={username}
+        />
       </div>
     </Router>
   );

@@ -12,3 +12,17 @@ export async function getUsers() {
     throw error;
   }
 }
+
+export async function loginUser(username, password) {
+  try {
+    const { data } = await axios.post(`${BASE}/users/login`, {
+      user: {
+        username: username,
+        password: password,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
