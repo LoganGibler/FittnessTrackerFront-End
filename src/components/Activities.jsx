@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { getActivities } from "../api";
 
 const Activities = ({ allActivities }) => {
   const [activityName, setActivityName] = useState("");

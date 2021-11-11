@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { getToken } from "./auth";
-import { getActivities } from "./api";
+import { getActivities, getRoutines } from "./api";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -15,20 +15,25 @@ import {
 } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation, Login, Register, Activities } from "./components";
+import { Navigation, Login, Register, Activities, Routines } from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [allActivities] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [filteredPosts, setFilteredPosts] = useState([]);
+  const [allActivities, setAllActivities] = useState([]);
+  const [allRoutines, setAllRoutines] = useState([]);
+
 
   useEffect(async () => {
     const data = await getActivities();
-    setAllActivities(data)
+    setAllActivities(data);
   }, []);
 
+  useEffect(async () => {
+    const data =await getRoutines();
+    setAllRoutines(data);
+  }, []);
+  
   return (
     <Router>
       <div id="App">
@@ -61,10 +66,12 @@ const App = () => {
           {/* 
           <Route path="/MyRoutines">
             <MyRoutines/>
-          </Route>
+          </Route>*/}
           <Route path="/Routines">
-            <Routines/>
-          </Route> */}
+            <Routines
+            allRoutines = {allRoutines}
+            />
+          </Route>
         </Switch>
       </div>
     </Router>

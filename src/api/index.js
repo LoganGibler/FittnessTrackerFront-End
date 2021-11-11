@@ -63,3 +63,25 @@ export async function createActivity(name, description) {
   }
 }
 
+export async function getRoutines() {
+  try {
+    const { data } = await axios.get(`${BASE}/routines`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function createRoutines(name, goal, isPublic) {
+  try {
+    const { data } = await axios.post(`${BASE}/routines`, {
+      name: name,
+      goal: goal,
+      isPublic: isPublic
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
