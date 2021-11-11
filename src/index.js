@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { getToken } from "./auth";
+import { getActivities } from "./api";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -14,14 +15,19 @@ import {
 } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation, Login, Register } from "./components";
+import { Navigation, Login, Register, Activities } from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  // const [allPosts, setAllPosts] = useState([]);
+  const [allActivities] = useState([]);
   // const [searchTerm, setSearchTerm] = useState("");
   // const [filteredPosts, setFilteredPosts] = useState([]);
+
+  useEffect(async () => {
+    const data = await getActivities();
+    setAllActivities(data)
+  }, []);
 
   return (
     <Router>
@@ -47,9 +53,12 @@ const App = () => {
               username={username}
             />
           </Route>
-          {/* <Route path="/Activities">
-            <Activities/>
-          </Route>
+          <Route path="/Activities">
+            <Activities
+              allActivities={allActivities}
+            />
+          </Route>{" "}
+          {/* 
           <Route path="/MyRoutines">
             <MyRoutines/>
           </Route>
