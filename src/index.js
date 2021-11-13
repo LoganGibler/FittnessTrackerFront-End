@@ -15,7 +15,14 @@ import {
 } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation, Login, Register, Activities, Routines, Home } from "./components";
+import {
+  Navigation,
+  Login,
+  Register,
+  Activities,
+  Routines,
+  Home,
+} from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,29 +30,22 @@ const App = () => {
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
 
-
-  const needToken = async () => {
-    const myToken = getToken()
-    console.log("this is token", token)
-  }
   useEffect(async () => {
     const data = await getActivities();
     setAllActivities(data);
   }, []);
 
   useEffect(async () => {
-    const data =await getRoutines();
+    const data = await getRoutines();
     setAllRoutines(data);
   }, []);
 
-  useEffect(async () => {
-    
-  }, []);
-  
+  useEffect(async () => {}, []);
+
   return (
     <Router>
       <div id="App">
-        <Navigation />
+        <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Switch>
           <Route path="/Home">
             <Home />
@@ -67,17 +67,13 @@ const App = () => {
             />
           </Route>
           <Route path="/Activities">
-            <Activities
-              allActivities={allActivities}
-            />
+            <Activities allActivities={allActivities} />
           </Route>
           {/* <Route path="/MyRoutines">
             <MyRoutines/>
           </Route> */}
           <Route path="/Routines">
-            <Routines
-            allRoutines = {allRoutines}
-            />
+            <Routines allRoutines={allRoutines} />
           </Route>
         </Switch>
       </div>

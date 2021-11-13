@@ -9,7 +9,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) =>{
 
     let [password, setPassword] = useState("");
   
-    return (
+  let loginForm = (
       <Col md={{ span: 4, offset: 1 }}>
         Login Form
         <Form
@@ -64,12 +64,17 @@ const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) =>{
       </Col>
     );
   
-    // let logoutButton = (
-    //   <ButtonToolbar className="mb-2">
-    //     <Button variant="primary">Logout</Button>
-    //   </ButtonToolbar>
-    // );
-    // return isLoggedIn ? logoutButton : loginForm;
+    let logoutButton = (
+      <ButtonToolbar className="mb-2">
+        <Button variant="primary" onClick={()=>{
+          setIsLoggedIn(false)
+          setUsername("")
+          setPassword("")
+          history.push("/Login")
+        }}>Logout</Button>
+      </ButtonToolbar>
+    );
+    return isLoggedIn ? logoutButton : loginForm;
 };
 
 

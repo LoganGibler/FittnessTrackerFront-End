@@ -33,7 +33,6 @@ export async function registerUser(username, password) {
         username : username,
         password : password,
     });
-    console.log(data)
     storeToken(data.token)
     storeUser(data.user.username)
     console.log(data)
