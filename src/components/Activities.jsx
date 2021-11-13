@@ -24,7 +24,7 @@ const Activities = ({ allActivities }) => {
           <input
             id="activityName"
             type="text"
-            placeholder="Enter Activity Name "
+            placeholder="Enter Activity Name"
             value={activityName}
             onChange={(event) => {
               setActivityName(event.target.value);
