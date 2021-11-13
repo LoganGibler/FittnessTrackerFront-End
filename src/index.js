@@ -13,9 +13,18 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation, Login, Register, Activities, Routines, MyRoutines, Home } from "./components";
+import {
+  Navigation,
+  Login,
+  Register,
+  Activities,
+  Routines,
+  MyRoutines,
+  Home,
+} from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,25 +32,25 @@ const App = () => {
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
 
-
   useEffect(async () => {
     const data = await getActivities();
     setAllActivities(data);
   }, []);
 
   useEffect(async () => {
-    const data =await getRoutines();
+    const data = await getRoutines();
     setAllRoutines(data);
   }, []);
-  
+
+
   return (
     <Router>
       <div id="App">
         <Navigation />
         <Switch>
-           <Route path="/Home">
-            <Home/>
-          </Route> 
+          <Route path="/Home">
+            <Home />
+          </Route>
           <Route path="/Login">
             <Login
               setIsLoggedIn={setIsLoggedIn}
@@ -59,17 +68,15 @@ const App = () => {
             />
           </Route>
           <Route path="/Activities">
-            <Activities
-              allActivities={allActivities}
-            />
+            <Activities allActivities={allActivities}
+             setAllActivities={setAllActivities}
+             />
           </Route>
           <Route path="/MyRoutines">
-            <MyRoutines/>
+            <MyRoutines />
           </Route>
           <Route path="/Routines">
-            <Routines
-            allRoutines = {allRoutines}
-            />
+            <Routines allRoutines={allRoutines} />
           </Route>
         </Switch>
       </div>

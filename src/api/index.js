@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "../auth";
+import { getToken, storeToken, storeUser } from "../auth";
 const BASE = "https://fitnesstrac-kr.herokuapp.com/api";
 
 // this is an example for an api call with axios
@@ -16,11 +16,27 @@ export async function getUsers() {
 export async function loginUser(username, password) {
   try {
     const { data } = await axios.post(`${BASE}/users/login`, {
-      user: {
-        username: username,
-        password: password,
-      },
+      username: username,
+      password: password,
     });
+    storeToken(data.token);
+    storeUser(data.user.username);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function registerUser(username, password) {
+  try {
+    const { data } = await axios.post(`${BASE}/users/register`, {
+      username: username,
+      password: password,
+    });
+    console.log(data);
+    storeToken(data.token);
+    storeUser(data.user.username);
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
@@ -35,7 +51,7 @@ export async function getActivities() {
         "Content-Type": "application/json",
       },
     });
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     throw error;
@@ -43,19 +59,22 @@ export async function getActivities() {
 }
 export async function createActivity(name, description) {
   const myToken = getToken();
-
+  console.log(myToken, "hey token");
   try {
-    const { data } = await axios.get(`${BASE}/activities`, {
-      activity: {
+    const { data } = await axios.post(
+      `${BASE}/activities`,
+      {
         name: name,
         description: description,
       },
-      headers: {
-        "Content-Type": "application/JSON",
+      {
+        headers: {
+          "Content-Type": "application/JSON",
 
-        Authorization: `Bearer ${myToken}`,
-      },
-    });
+          Authorization: `Bearer ${myToken}`,
+        },
+      }
+    );
     console.log(data);
     return data;
   } catch (error) {
@@ -77,7 +96,7 @@ export async function createRoutines(name, goal, isPublic) {
     const { data } = await axios.post(`${BASE}/routines`, {
       name: name,
       goal: goal,
-      isPublic: isPublic
+      isPublic: isPublic,
     });
     console.log(data);
     return data;
