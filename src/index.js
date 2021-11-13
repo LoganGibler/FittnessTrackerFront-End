@@ -13,6 +13,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 import {
@@ -21,6 +22,7 @@ import {
   Register,
   Activities,
   Routines,
+  MyRoutines,
   Home,
 } from "./components";
 
@@ -40,7 +42,6 @@ const App = () => {
     setAllRoutines(data);
   }, []);
 
-  useEffect(async () => {}, []);
 
   return (
     <Router>
@@ -67,11 +68,13 @@ const App = () => {
             />
           </Route>
           <Route path="/Activities">
-            <Activities allActivities={allActivities} />
+            <Activities allActivities={allActivities}
+             setAllActivities={setAllActivities}
+             />
           </Route>
-          {/* <Route path="/MyRoutines">
-            <MyRoutines/>
-          </Route> */}
+          <Route path="/MyRoutines">
+            <MyRoutines />
+          </Route>
           <Route path="/Routines">
             <Routines allRoutines={allRoutines} />
           </Route>
