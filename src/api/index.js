@@ -59,7 +59,7 @@ export async function getActivities() {
 }
 export async function createActivity(name, description) {
   const myToken = getToken();
-  console.log(myToken, "hey token");
+  
   try {
     const { data } = await axios.post(
       `${BASE}/activities`,
@@ -90,14 +90,23 @@ export async function getRoutines() {
     throw error;
   }
 }
-
 export async function createRoutines(name, goal, isPublic) {
+  const myToken = getToken();
   try {
-    const { data } = await axios.post(`${BASE}/routines`, {
-      name: name,
-      goal: goal,
-      isPublic: isPublic,
-    });
+    const { data } = await axios.post(
+      `${BASE}/routines`,
+      {
+        name: name,
+        goal: goal,
+        isPublic: true
+      },
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${myToken}`
+        }
+      }
+    );
     console.log(data);
     return data;
   } catch (error) {

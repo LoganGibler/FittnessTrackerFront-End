@@ -42,7 +42,6 @@ const App = () => {
     setAllRoutines(data);
   }, []);
 
-
   return (
     <Router>
       <div id="App">
@@ -68,15 +67,17 @@ const App = () => {
             />
           </Route>
           <Route path="/Activities">
-            <Activities allActivities={allActivities}
-             setAllActivities={setAllActivities}
-             />
+            <Activities
+              allActivities={allActivities}
+              setAllActivities={setAllActivities}
+            />
           </Route>
           <Route path="/MyRoutines">
-            <MyRoutines />
+            <MyRoutines allRoutines={allRoutines} />
           </Route>
           <Route path="/Routines">
-            <Routines allRoutines={allRoutines} />
+            <Routines allRoutines={allRoutines}
+            setAllRoutines={setAllRoutines} />
           </Route>
         </Switch>
       </div>

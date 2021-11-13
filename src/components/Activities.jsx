@@ -37,7 +37,7 @@ const Activities = ({ allActivities, setAllActivities }) => {
           try {
             const data = await createActivity(activityName, activityDescription)
             setAllActivities([data, ...allActivities])
-            console.log(data, "are we getting in")
+            
 
           } catch (error) {
             console.log(error);
