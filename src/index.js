@@ -71,10 +71,9 @@ const App = () => {
               allActivities={allActivities}
             />
           </Route>
-          {/* 
-          <Route path="/MyRoutines">
+          {/* <Route path="/MyRoutines">
             <MyRoutines/>
-          </Route>*/}
+          </Route> */}
           <Route path="/Routines">
             <Routines
             allRoutines = {allRoutines}
