@@ -14,19 +14,17 @@ import { createRoutines } from "../api";
 // be able to update the duration or count of any activity on the routine
 // be able to remove any activity from the routine
 
-const MyRoutines = ({allRoutines, setAllRoutines}) => {
-    const [routineName, setRoutineName] = useState("");
-    const [routineGoal, setRoutineGoal] = useState("");
+const MyRoutines = ({ allRoutines, setAllRoutines }) => {
+  const [routineName, setRoutineName] = useState("");
+  const [routineGoal, setRoutineGoal] = useState("");
 
-    return (
-        <div className="ui container">
+  return (
+    <div className="ui container">
       <ul className="activities-main-container">
         {allRoutines.length
           ? allRoutines.map((routine) => {
-            // console.log(activity,"undefined???")
               return (
                 <div key={`routine: ${routine.id}`}>
-
                   <Link
                     to={`/Routines/${routine.id}`}
                     key={routine.id}
@@ -41,16 +39,15 @@ const MyRoutines = ({allRoutines, setAllRoutines}) => {
           : null}
       </ul>
 
-      <form className="ui form"
+      <form
+        className="ui form"
         id="newPostSubmit"
         onSubmit={async (event) => {
           event.preventDefault();
-          console.log("hello")
+          console.log("hello");
           try {
-            const data = await createRoutines(routineName, routineGoal)
-            setAllRoutines([data, ...allRoutines])
-           
-
+            const data = await createRoutines(routineName, routineGoal);
+            setAllRoutines([data, ...allRoutines]);
           } catch (error) {
             console.log(error);
           }
@@ -83,12 +80,7 @@ const MyRoutines = ({allRoutines, setAllRoutines}) => {
         <button className="ui button">Create</button>
       </form>
     </div>
-    
-    );
-  };
-  
-  
-  
-  
+  );
+};
 
 export default MyRoutines;
