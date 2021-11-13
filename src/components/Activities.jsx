@@ -20,7 +20,7 @@ const Activities = ({ allActivities }) => {
       </ul>
       <form>
         <fieldset className="auth-component-input">
-          <label htmlFor="userName">Create A New Activity :</label>
+          <label htmlFor="activityName">Create A New Activity :</label>
           <input
             id="activityName"
             type="text"

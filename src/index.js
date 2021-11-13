@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation, Login, Register, Activities, Routines } from "./components";
+import { Navigation, Login, Register, Activities, Routines, MyRoutines } from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,11 +62,10 @@ const App = () => {
             <Activities
               allActivities={allActivities}
             />
-          </Route>{" "}
-          {/* 
+          </Route>
           <Route path="/MyRoutines">
             <MyRoutines/>
-          </Route>*/}
+          </Route>
           <Route path="/Routines">
             <Routines
             allRoutines = {allRoutines}

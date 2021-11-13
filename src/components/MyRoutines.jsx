@@ -11,4 +11,47 @@ import React, { useState } from "react";
 // be able to add an activity to a routine via a small form which has a dropdown for all activities, an inputs for count and duration
 // be able to update the duration or count of any activity on the routine
 // be able to remove any activity from the routine
+
+const MyRoutines = () => {
+    const [routineName, setRoutineName] = useState("");
+    const [routineGoal, setRoutineGoal] = useState("");
+
+    return (
+      <div>
+        <form>
+        <fieldset className="auth-component-input">
+          <label htmlFor="routineName">Create A New Routine :</label>
+          <input
+            id="routineName"
+            type="text"
+            placeholder="Enter Routine Name "
+            value={routineName}
+            onChange={(event) => {
+              setRoutineName(event.target.value);
+            }}
+          ></input>
+        </fieldset>
+        <fieldset className="auth-component-input">
+          <label htmlFor="routineGoal">Goal :</label>
+          <input
+            id="routineGoal"
+            type="text"
+            placeholder="Enter Goal"
+            value={routineGoal}
+            onChange={(event) => {
+              setRoutineGoal(event.target.value);
+            }}
+          ></input>
+        </fieldset>
+        <button className="ui button">Create</button>
+      </form>
+    </div>
+    
+    );
+  };
+  
+  
+  
+  
+
 export default MyRoutines;

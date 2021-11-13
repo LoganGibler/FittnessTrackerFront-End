@@ -58,7 +58,7 @@ const Navigation = () => {
                 history.push("/Routines");
               }}
             >
-              All Routines
+              Routines
             </Nav.Link>
             <Nav.Link
               type="submit"
