@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import { Navigation, Login, Register, Activities, Routines } from "./components";
+import { Navigation, Login, Register, Activities, Routines, Home } from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,6 +24,10 @@ const App = () => {
   const [allRoutines, setAllRoutines] = useState([]);
 
 
+  const needToken = async () => {
+    const myToken = getToken()
+    console.log("this is token", token)
+  }
   useEffect(async () => {
     const data = await getActivities();
     setAllActivities(data);
@@ -33,15 +37,19 @@ const App = () => {
     const data =await getRoutines();
     setAllRoutines(data);
   }, []);
+
+  useEffect(async () => {
+    
+  }, []);
   
   return (
     <Router>
       <div id="App">
         <Navigation />
         <Switch>
-          {/* <Route path="/Home">
-            <Home/>
-          </Route> */}
+          <Route path="/Home">
+            <Home />
+          </Route>
           <Route path="/Login">
             <Login
               setIsLoggedIn={setIsLoggedIn}
@@ -62,7 +70,7 @@ const App = () => {
             <Activities
               allActivities={allActivities}
             />
-          </Route>{" "}
+          </Route>
           {/* 
           <Route path="/MyRoutines">
             <MyRoutines/>

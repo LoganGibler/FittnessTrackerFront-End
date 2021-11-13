@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Col, ButtonToolbar } from "react-bootstrap";
+import { getToken, storeToken } from "../auth";
+import { registerUser } from "../api";
 
-const Register = (props) => {
+const Register = ({isLoggedIn, setIsLoggedIn}) => {
   const [username, setUsername] = useState("");
-
-
+  const [password, setPassword] = useState("");
+  
   return (
     <Col md={{ span: 4, offset: 1 }}>
       Register form
-      <Form 
+      <Form
         onSubmit={async (e) => {
           e.preventDefault();
           try {
             const { data } = await registerUser(username, password);
-            storeToken(data.token);
+            setIsLoggedIn(true)
           } catch (error) {
             console.log(error.message);
+          } finally {
+            // window.location = "/login";
           }
-          finally {
-            window.location = "/login"
-          }
-        }}>
+        }}
+      >
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Create Username</Form.Label>
           <Form.Control
@@ -28,16 +30,25 @@ const Register = (props) => {
             placeholder="usernames"
             value={username}
             onChange={(event) => {
-              setUsername(event.target.value);
+              // console.log(event.target.value)
+              console.log(username);
+              setUsername(event.target.value)
             }}
           />
           <Form.Text className="text-muted">
-          We'll never share your username or password with anyone else.
+            We'll never share your username or password with anyone else.
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label> Create Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
         </Form.Group>
         <ButtonToolbar className="mb-2">
           <Button variant="primary" type="submit">
@@ -50,6 +61,3 @@ const Register = (props) => {
 };
 
 export default Register;
-
-
-

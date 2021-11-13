@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Col, ButtonToolbar, FormGroup } from "react-bootstrap";
-// import { loginUser } from "../api";
-// import { storeToken } from "../auth";
+import { loginUser } from "../api";
+import { storeToken, storeUser } from "../auth";
 import { useHistory } from "react-router-dom";
 
 const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) =>{
@@ -17,8 +17,9 @@ const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) =>{
             e.preventDefault();
             try {
               const { data } = await loginUser(username, password);
-              storeToken(data.token);
-              console.log(data.token, "login component");
+              setIsLoggedIn(true)
+              setUsername("")
+              setPassword("")
             } catch (error) {
               console.log(error.message);
             } finally {
