@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Col, ButtonToolbar } from "react-bootstrap";
 import { getToken, storeToken } from "../auth";
 import { registerUser } from "../api";
-
+import { useHistory } from "react-router-dom";
 const Register = ({isLoggedIn, setIsLoggedIn}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+  let history = useHistory();
   return (
     <Col md={{ span: 4, offset: 1 }}>
       Register form
@@ -19,7 +19,7 @@ const Register = ({isLoggedIn, setIsLoggedIn}) => {
           } catch (error) {
             console.log(error.message);
           } finally {
-            // window.location = "/login";
+            history.push("/Login");
           }
         }}
       >
