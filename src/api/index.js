@@ -36,12 +36,12 @@ export async function registerUser(username, password) {
     console.log(data);
     storeToken(data.token);
     storeUser(data.user.username);
-    console.log(data);
+    console.log(data.token);
     return data;
   } catch (error) {
     throw error;
   }
-}
+} 
 
 // GET /api/activities
 export async function getActivities() {
@@ -99,6 +99,54 @@ export async function createRoutines(name, goal, isPublic) {
         name: name,
         goal: goal,
         isPublic: true
+      },
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${myToken}`
+        }
+      }
+    );
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteRoutines(routineId) {
+  const myToken = getToken()
+  try {
+    const { data } = await axios.delete(
+      `${BASE}/routines/${routineId}`,
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          
+          Authorization: `Bearer ${myToken}`,
+        },
+      }
+    );
+    console.log(data)
+    return data;
+  } catch (error) {
+    throw error;
+  }finally{
+    location.reload();
+  }
+}
+
+// POST /api/routines/:routineId/activities
+export async function attachActivities(id, activityId, count, duration) {
+  const myToken = getToken();
+
+  try {
+    const { data } = await axios.post(
+      `${BASE}/routines/${id}/activities`,
+      {
+        activityId: activityId,
+        count: count,
+        duration: duration
       },
       {
         headers: {

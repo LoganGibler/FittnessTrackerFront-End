@@ -73,13 +73,16 @@ const App = () => {
             />
           </Route>
           <Route path="/MyRoutines">
-            <MyRoutines allRoutines={allRoutines}
-            setAllRoutines={setAllRoutines}
+            <MyRoutines
+              allRoutines={allRoutines}
+              setAllRoutines={setAllRoutines}
             />
           </Route>
           <Route path="/Routines">
-            <Routines allRoutines={allRoutines}
-            setAllRoutines={setAllRoutines} />
+            <Routines
+              allRoutines={allRoutines}
+              setAllRoutines={setAllRoutines}
+            />
           </Route>
         </Switch>
       </div>

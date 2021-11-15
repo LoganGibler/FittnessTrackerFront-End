@@ -32,7 +32,6 @@ const Activities = ({ allActivities, setAllActivities }) => {
         id="newPostSubmit"
         onSubmit={async (event) => {
           event.preventDefault();
-          console.log("hello");
           try {
             const data = await createActivity(
               activityName,

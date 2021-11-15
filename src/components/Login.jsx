@@ -17,9 +17,9 @@ const Login = ({ isLoggedIn, setIsLoggedIn, setUsername, username }) => {
           e.preventDefault();
           try {
             const { data } = await loginUser(username, password);
-            setIsLoggedIn(true);
             setUsername("");
             setPassword("");
+            setIsLoggedIn(true);
           } catch (error) {
             console.log(error.message);
           } finally {
