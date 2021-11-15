@@ -11,10 +11,8 @@ const Activities = ({ allActivities, setAllActivities }) => {
       <ul className="activities-main-container">
         {allActivities.length
           ? allActivities.map((activity) => {
-            // console.log(activity,"undefined???")
               return (
                 <div key={`activity: ${activity.id}`}>
-
                   <Link
                     to={`/Activities/${activity.id}`}
                     key={activity.id}
@@ -29,16 +27,17 @@ const Activities = ({ allActivities, setAllActivities }) => {
           : null}
       </ul>
 
-      <form className="ui form"
+      <form
+        className="ui form"
         id="newPostSubmit"
         onSubmit={async (event) => {
           event.preventDefault();
-          console.log("hello")
           try {
-            const data = await createActivity(activityName, activityDescription)
-            setAllActivities([data, ...allActivities])
-            
-
+            const data = await createActivity(
+              activityName,
+              activityDescription
+            );
+            setAllActivities([data, ...allActivities]);
           } catch (error) {
             console.log(error);
           }
@@ -69,7 +68,9 @@ const Activities = ({ allActivities, setAllActivities }) => {
             }}
           ></input>
         </fieldset>
-        <button type="submit" className="ui button">Create</button>
+        <button type="submit" className="ui button">
+          Create
+        </button>
       </form>
     </div>
   );

@@ -3,7 +3,7 @@ import { Form, Button, Col, ButtonToolbar } from "react-bootstrap";
 import { getToken, storeToken } from "../auth";
 import { registerUser } from "../api";
 import { useHistory } from "react-router-dom";
-const Register = ({isLoggedIn, setIsLoggedIn}) => {
+const Register = ({ isLoggedIn, setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let history = useHistory();
@@ -15,7 +15,7 @@ const Register = ({isLoggedIn, setIsLoggedIn}) => {
           e.preventDefault();
           try {
             const { data } = await registerUser(username, password);
-            setIsLoggedIn(true)
+            setIsLoggedIn(true);
           } catch (error) {
             console.log(error.message);
           } finally {
@@ -32,7 +32,7 @@ const Register = ({isLoggedIn, setIsLoggedIn}) => {
             onChange={(event) => {
               // console.log(event.target.value)
               console.log(username);
-              setUsername(event.target.value)
+              setUsername(event.target.value);
             }}
           />
           <Form.Text className="text-muted">
