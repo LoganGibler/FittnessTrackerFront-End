@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { createActivity, createRoutines, deleteRoutines } from "../api";
+import { createRoutines, deleteRoutines, attachActivities } from "../api";
 import { getUser } from "../auth";
+import "semantic-ui-css/semantic.min.css";
+import { Dropdown } from "semantic-ui-react";
 // As a registered user on the My Routines tab, I want to:
 // be shown a form to create a new routine
 // the form should have text fields for name and goal
@@ -14,11 +16,10 @@ const MyRoutines = ({ allRoutines, setAllRoutines }) => {
   const [routineGoal, setRoutineGoal] = useState("");
   const [activityCount, setActivityCount] = useState("");
   const [activityDuration, setActivityDuration] = useState("");
-
+  const [activityID, setActivityID] = useState("");
 
   let userName = getUser();
-
-  
+  console.log(allRoutines);
   return (
     <div className="ui container">
       <ul className="activities-main-container">
@@ -44,14 +45,20 @@ const MyRoutines = ({ allRoutines, setAllRoutines }) => {
                         event.preventDefault();
                         console.log("hello");
                         try {
-                          const data = await createActivity(
-                            activityName,
-                            activityDescription
+                          const data = await attachActivities(
+                            routine.id,
+                            activityID,
+                            activityCount,
+                            activityDuration
                           );
-                          setAllActivities([data, ...allActivities]);
+                          setAllRoutines([
+                            data.data.activities,
+                            ...allRoutines,
+                          ]);
                         } catch (error) {
                           console.log(error);
                         }
+                        console.log(routine, "!!");
                       }}
                     >
                       <fieldset className="auth-component-input">
@@ -78,15 +85,28 @@ const MyRoutines = ({ allRoutines, setAllRoutines }) => {
                           }}
                         ></input>
                       </fieldset>
+
+                      <fieldset className="auth-component-input">
+                        <label htmlFor="addActivity">Activity ID :</label>
+                        <input
+                          id="activityID"
+                          type="text"
+                          placeholder="Enter ID "
+                          value={activityID}
+                          onChange={(event) => {
+                            setActivityID(event.target.value);
+                          }}
+                        ></input>
+                      </fieldset>
                       <button className="ui button">Add Activity</button>
                     </form>
+
                     {/* be able to delete the entire routine*/}
                     <form
                       className="ui form"
                       id="newPostSubmit"
                       onSubmit={async (event) => {
                         event.preventDefault();
-                        console.log("hello");
                         try {
                           const data = await deleteRoutines(routine.id);
                         } catch (error) {
