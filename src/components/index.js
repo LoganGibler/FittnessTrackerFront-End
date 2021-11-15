@@ -5,3 +5,6 @@ export { default as MyRoutines } from "./MyRoutines";
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
 export { default as Navigation } from "./Navigation";
+export { default as MyRoutinesForm } from "./MyRoutinesForm";
+export { default as DeleteRoutine} from "./DeleteRoutine"
+export { default as DeleteActivity} from "./DeleteActivity"

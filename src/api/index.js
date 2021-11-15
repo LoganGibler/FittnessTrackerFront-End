@@ -136,6 +136,24 @@ export async function deleteRoutines(routineId) {
   }
 }
 
+export async function deleteActivities(id) {
+  const myToken = getToken();
+
+  try {
+    const { data } = await axios.delete(`${BASE}/routine_activities/${id}`, {
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: `Bearer ${myToken}`
+      }
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 // POST /api/routines/:routineId/activities
 export async function attachActivities(id, activityId, count, duration) {
   const myToken = getToken();

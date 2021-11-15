@@ -34,6 +34,7 @@ const App = () => {
 
   useEffect(async () => {
     const data = await getActivities();
+    // console.log("this is data",data)
     setAllActivities(data);
   }, []);
 
