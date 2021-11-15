@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { createActivity, createRoutines, deleteRoutines } from "../api";
+import { createRoutines, deleteRoutines, attachActivities } from "../api";
 import { getUser } from "../auth";
 import { MyRoutinesForm } from ".";
 import DeleteRoutine from "./DeleteRoutine";

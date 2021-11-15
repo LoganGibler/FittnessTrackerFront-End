@@ -177,5 +177,7 @@ export async function attachActivities(id, activityId, count, duration) {
     return data;
   } catch (error) {
     throw error;
+  }finally{
+    // location.reload();
   }
 }
